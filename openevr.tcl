@@ -35,8 +35,8 @@
 #    "vhdl/delay_measure_wnd.vhd"
 #    "vhdl/evr_dc.vhd"
 #    "vhdl/transceiver_dc_k7.vhd"
-#    "vhdl/zync_top.vhd"
-#    "vhdl/zync.xdc"
+#    "vhdl/zynq_top.vhd"
+#    "vhdl/zynq.xdc"
 #
 #*****************************************************************************************
 
@@ -143,7 +143,7 @@ set files [list \
  "[file normalize "$origin_dir/vhdl/delay_measure_wnd.vhd"]"\
  "[file normalize "$origin_dir/vhdl/evr_dc.vhd"]"\
  "[file normalize "$origin_dir/vhdl/transceiver_dc_k7.vhd"]"\
- "[file normalize "$origin_dir/vhdl/zync_top.vhd"]"\
+ "[file normalize "$origin_dir/vhdl/zynq_top.vhd"]"\
 ]
 add_files -norecurse -fileset $obj $files
 
@@ -188,7 +188,7 @@ set file [file normalize $file]
 set file_obj [get_files -of_objects [get_filesets sources_1] [list "*$file"]]
 set_property -name "file_type" -value "VHDL" -objects $file_obj
 
-set file "$origin_dir/vhdl/zync_top.vhd"
+set file "$origin_dir/vhdl/zynq_top.vhd"
 set file [file normalize $file]
 set file_obj [get_files -of_objects [get_filesets sources_1] [list "*$file"]]
 set_property -name "file_type" -value "VHDL" -objects $file_obj
@@ -199,7 +199,7 @@ set_property -name "file_type" -value "VHDL" -objects $file_obj
 
 # Set 'sources_1' fileset properties
 set obj [get_filesets sources_1]
-set_property -name "top" -value "zync_top" -objects $obj
+set_property -name "top" -value "zynq_top" -objects $obj
 
 # Set 'sources_1' fileset object
 set obj [get_filesets sources_1]
@@ -224,9 +224,9 @@ if {[string equal [get_filesets -quiet constrs_1] ""]} {
 set obj [get_filesets constrs_1]
 
 # Add/Import constrs file and set constrs file properties
-set file "[file normalize "$origin_dir/vhdl/zync.xdc"]"
+set file "[file normalize "$origin_dir/vhdl/zynq.xdc"]"
 set file_added [add_files -norecurse -fileset $obj $file]
-set file "$origin_dir/vhdl/zync.xdc"
+set file "$origin_dir/vhdl/zynq.xdc"
 set file [file normalize $file]
 set file_obj [get_files -of_objects [get_filesets constrs_1] [list "*$file"]]
 set_property -name "file_type" -value "XDC" -objects $file_obj
@@ -245,7 +245,7 @@ set obj [get_filesets sim_1]
 
 # Set 'sim_1' fileset properties
 set obj [get_filesets sim_1]
-set_property -name "top" -value "zync_top" -objects $obj
+set_property -name "top" -value "zynq_top" -objects $obj
 
 # Create 'synth_1' run (if not found)
 if {[string equal [get_runs -quiet synth_1] ""]} {

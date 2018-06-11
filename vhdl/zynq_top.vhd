@@ -5,7 +5,7 @@ use ieee.std_logic_unsigned.all;
 library UNISIM;
 use UNISIM.Vcomponents.ALL;
 
-entity zync_top is
+entity zynq_top is
   port (
     PL_CLK       : in std_logic;
     PL_LED1      : out std_logic;
@@ -13,26 +13,26 @@ entity zync_top is
     PL_LED3      : out std_logic;
     PL_LED4      : out std_logic;
 
-    PL_PB1       : in std_logic;   -- JX1 pin 19,  Zync G2
-    PL_PB2       : in std_logic;   -- JX2 pin 100, Zync T16
-    PL_PB3       : in std_logic;   -- JX2 pin 95,  Zync AB22
-    PL_PB4       : in std_logic;   -- JX2 pin 94,  Zync AB18
-    PL_PB5       : in std_logic;   -- JX2 pin 96,  Zync AB19
+    PL_PB1       : in std_logic;   -- JX1 pin 19,  Zynq G2
+    PL_PB2       : in std_logic;   -- JX2 pin 100, Zynq T16
+    PL_PB3       : in std_logic;   -- JX2 pin 95,  Zynq AB22
+    PL_PB4       : in std_logic;   -- JX2 pin 94,  Zynq AB18
+    PL_PB5       : in std_logic;   -- JX2 pin 96,  Zynq AB19
 
     BANK13_LVDS_8_P : out std_logic;
     BANK13_LVDS_8_N : out std_logic;
     
-    MGTREFCLK1_P : in std_logic;   -- JX3 pin 2,   Zync U5
-    MGTREFCLK1_N : in std_logic;   -- JX3 pin 3,   Zync V5
+    MGTREFCLK1_P : in std_logic;   -- JX3 pin 2,   Zynq U5
+    MGTREFCLK1_N : in std_logic;   -- JX3 pin 3,   Zynq V5
 
-    MGTTX2_P     : out std_logic;  -- JX3 pin 25,  Zync AA5
-    MGTTX2_N     : out std_logic;  -- JX3 pin 27,  Zync AB5
-    MGTRX2_P     : in std_logic;   -- JX3 pin 20,  Zync AA9
-    MGTRX2_N     : in std_logic    -- JX3 pin 22,  Zync AB9
+    MGTTX2_P     : out std_logic;  -- JX3 pin 25,  Zynq AA5
+    MGTTX2_N     : out std_logic;  -- JX3 pin 27,  Zynq AB5
+    MGTRX2_P     : in std_logic;   -- JX3 pin 20,  Zynq AA9
+    MGTRX2_N     : in std_logic    -- JX3 pin 22,  Zynq AB9
     );
-end zync_top;
+end zynq_top;
 
-architecture structure of zync_top is
+architecture structure of zynq_top is
 
   component evr_dc is
       generic (
@@ -84,13 +84,13 @@ architecture structure of zync_top is
     
     MGTREFCLK0_P : in std_logic;
     MGTREFCLK0_N : in std_logic;
-    MGTREFCLK1_P : in std_logic;   -- JX3 pin 2,   Zync U5
-    MGTREFCLK1_N : in std_logic;   -- JX3 pin 3,   Zync V5
+    MGTREFCLK1_P : in std_logic;   -- JX3 pin 2,   Zynq U5
+    MGTREFCLK1_N : in std_logic;   -- JX3 pin 3,   Zynq V5
 
-    MGTTX2_P     : out std_logic;  -- JX3 pin 25,  Zync AA5
-    MGTTX2_N     : out std_logic;  -- JX3 pin 27,  Zync AB5
-    MGTRX2_P     : in std_logic;   -- JX3 pin 20,  Zync AA9
-    MGTRX2_N     : in std_logic    -- JX3 pin 22,  Zync AB9
+    MGTTX2_P     : out std_logic;  -- JX3 pin 25,  Zynq AA5
+    MGTTX2_N     : out std_logic;  -- JX3 pin 27,  Zynq AB5
+    MGTRX2_P     : in std_logic;   -- JX3 pin 20,  Zynq AA9
+    MGTRX2_N     : in std_logic    -- JX3 pin 22,  Zynq AB9
     );
   end component;
 
