@@ -354,10 +354,10 @@ begin
 	pulse_cnt := pulse_cnt - 1;
       end if;
       if event_rxd = X"01" then
-	pulse_cnt := X"FF";
+	pulse_cnt := X"FFFF";
       end if;
       if rx_link_ok = '0' then
-	pulse_cnt := X"00";
+	pulse_cnt := X"0000";
       end if;
     end if;
   end process;
