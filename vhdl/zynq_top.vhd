@@ -286,10 +286,24 @@ begin
 
   delay_comp_target <= X"02100000";
 
-  event_txd <= X"00";
   dbus_txd <= X"00";
   databuf_txd <= X"00";
   databuf_tx_k <= '0';
+
+  -- Process to send out event 0x01 periodically
+  process (refclk)
+    variable count : std_logic_vector(31 downto 0) := X"FFFFFFFF";
+  begin
+    if rising_edge(refclk) then
+      event_txd <= X"00";
+      if count(28) = '0' then
+	event_txd <= X"01";
+	count := X"FFFFFFFF";
+      end if;
+      count := count - 1;
+    end if;
+  end process;
+  
   
   process (sys_clk)
     variable count : std_logic_vector(31 downto 0) := X"FFFFFFFF";
@@ -300,7 +314,7 @@ begin
       sys_reset <= PL_PB3;
       PL_LED1 <= rx_violation;
       PL_LED2 <= rx_link_ok;
-      PL_LED3 <= event_rxd(0);
+--      PL_LED3 <= event_rxd(0);
       PL_LED4 <= count(25);
       count := count - 1;
     end if;
@@ -330,9 +344,10 @@ begin
   end process;
 
   process (event_clk, event_rxd)
-    variable pulse_cnt : std_logic_vector(7 downto 0) := X"00";
+    variable pulse_cnt : std_logic_vector(15 downto 0) := X"0000";
   begin
     if rising_edge(event_clk) then
+      PL_LED3 <= pulse_cnt(pulse_cnt'high);
       BANK13_LVDS_8_P <= pulse_cnt(pulse_cnt'high);
       BANK13_LVDS_8_N <= not pulse_cnt(pulse_cnt'high);
       if pulse_cnt(pulse_cnt'high) = '1' then
