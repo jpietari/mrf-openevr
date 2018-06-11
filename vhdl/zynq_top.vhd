@@ -8,16 +8,16 @@ use UNISIM.Vcomponents.ALL;
 entity zynq_top is
   port (
     PL_CLK       : in std_logic;
-    PL_LED1      : out std_logic;
-    PL_LED2      : out std_logic;
-    PL_LED3      : out std_logic;
-    PL_LED4      : out std_logic;
+    PL_LED1      : out std_logic;  -- Carrier D6
+    PL_LED2      : out std_logic;  -- Carrier D7
+    PL_LED3      : out std_logic;  -- Carrier D8
+    PL_LED4      : out std_logic;  -- Carrier D9
 
-    PL_PB1       : in std_logic;   -- JX1 pin 19,  Zynq G2
-    PL_PB2       : in std_logic;   -- JX2 pin 100, Zynq T16
-    PL_PB3       : in std_logic;   -- JX2 pin 95,  Zynq AB22
-    PL_PB4       : in std_logic;   -- JX2 pin 94,  Zynq AB18
-    PL_PB5       : in std_logic;   -- JX2 pin 96,  Zynq AB19
+    PL_PB1       : in std_logic;   -- JX1 pin 19,  Zynq G2, Carrier SW1 N
+    PL_PB2       : in std_logic;   -- JX2 pin 100, Zynq T16, Carrier SW5 S
+    PL_PB3       : in std_logic;   -- JX2 pin 95,  Zynq AB22, Carrier SW3, E
+    PL_PB4       : in std_logic;   -- JX2 pin 94,  Zynq AB18, Carrier SW2, W
+    PL_PB5       : in std_logic;   -- JX2 pin 96,  Zynq AB19, Carrier SW4, C
 
     BANK13_LVDS_8_P : out std_logic;
     BANK13_LVDS_8_N : out std_logic;
@@ -296,7 +296,7 @@ begin
   begin
     if rising_edge(refclk) then
       event_txd <= X"00";
-      if count(28) = '0' then
+      if count(26) = '0' then
 	event_txd <= X"01";
 	count := X"FFFFFFFF";
       end if;
@@ -344,7 +344,7 @@ begin
   end process;
 
   process (event_clk, event_rxd)
-    variable pulse_cnt : std_logic_vector(15 downto 0) := X"0000";
+    variable pulse_cnt : std_logic_vector(19 downto 0) := X"00000";
   begin
     if rising_edge(event_clk) then
       PL_LED3 <= pulse_cnt(pulse_cnt'high);
@@ -354,10 +354,10 @@ begin
 	pulse_cnt := pulse_cnt - 1;
       end if;
       if event_rxd = X"01" then
-	pulse_cnt := X"FFFF";
+	pulse_cnt := X"FFFFF";
       end if;
       if rx_link_ok = '0' then
-	pulse_cnt := X"0000";
+	pulse_cnt := X"0000F";
       end if;
     end if;
   end process;

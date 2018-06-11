@@ -289,12 +289,12 @@ begin
       reset => reset,
 
       -- Transmitter side connections
-      event_txd => up_event_txd,
-      dbus_txd => up_dbus_txd,
-      databuf_txd => up_databuf_txd,
-      databuf_tx_k => up_databuf_tx_k,
-      databuf_tx_ena => up_databuf_tx_ena,
-      databuf_tx_mode => up_databuf_tx_mode,
+      event_txd => event_txd,
+      dbus_txd => dbus_txd,
+      databuf_txd => databuf_txd,
+      databuf_tx_k => databuf_tx_k,
+      databuf_tx_ena => databuf_tx_ena,
+      databuf_tx_mode => databuf_tx_mode,
 
       RXN => MGTRX2_N,
       RXP => MGTRX2_p,
