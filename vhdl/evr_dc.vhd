@@ -431,6 +431,7 @@ begin
       I => mmcm_clk0,
       O => event_clk);
 
+  refclk_out <= refclk;
   event_clk_out <= event_clk;
   event_rxd <= up_event_rxd;
   dbus_rxd <= up_dbus_rxd;
