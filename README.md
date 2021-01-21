@@ -19,5 +19,5 @@ http://picozed.org/support/design/13076/106
 Building the exmaple design
 
 git clone https://github.com/jpietari/mrf-openevr
-vivado -mode tcl
-%vivado source ./openevr.tcl
+
+vivado -mode tcl %vivado source ./openevr.tcl
