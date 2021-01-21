@@ -6,6 +6,7 @@ Prerequisites
 Hardware
 
 Avnet PicoZed 7Z030 Module P/N AES-Z7PZ-7Z030-SOM-G
+
 Avnet PicoZed FMC Carrier Card V2 P/N AES-PZCC-FMC-V2-G
 
 Software Tools
